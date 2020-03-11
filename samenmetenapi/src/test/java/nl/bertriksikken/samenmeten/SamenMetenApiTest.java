@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import nl.bertriksikken.samenmeten.api.ISamenMetenRestApi;
+import nl.bertriksikken.samenmeten.dto.Sensor;
 import nl.bertriksikken.samenmeten.dto.Thing;
 
 public final class SamenMetenApiTest {
@@ -23,6 +24,15 @@ public final class SamenMetenApiTest {
 		List<Thing> things = api.getThings();
 		Assert.assertTrue(things.size() > 0);
 		LOG.info("Retrieved {} things", things.size());
+	}
+	
+	@Test
+	public void testGetSensors() throws IOException {
+		ISamenMetenRestApi restApi = SamenMetenApi.newRestClient("https://api-samenmeten.rivm.nl", Duration.ofSeconds(10));
+		SamenMetenApi api = new SamenMetenApi(restApi);
+		List<Sensor> sensors = api.getSensors();
+		Assert.assertTrue(sensors.size() > 0);
+		LOG.info("Retrieved {} sensors: {}", sensors.size(), sensors);
 	}
 	
 }

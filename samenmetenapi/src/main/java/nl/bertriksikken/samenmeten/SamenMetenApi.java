@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import nl.bertriksikken.samenmeten.api.ISamenMetenRestApi;
+import nl.bertriksikken.samenmeten.dto.Sensor;
+import nl.bertriksikken.samenmeten.dto.Sensors;
 import nl.bertriksikken.samenmeten.dto.Thing;
 import nl.bertriksikken.samenmeten.dto.Things;
 import okhttp3.OkHttpClient;
@@ -51,14 +53,23 @@ public final class SamenMetenApi {
     			throw new IOException("Unsuccessful response!");
     		}
 			Things things = response.body();
-			if (things.getThings().isEmpty()) {
+			List<Thing> thingList = things.getThings();
+			allThings.addAll(thingList);
+			skip += thingList.size();
+			if (thingList.size() < top) {
 				break;
-			} else {
-				allThings.addAll(things.getThings());
-				skip += top;
     		}
 		}
     	return allThings;
+    }
+    
+    public List<Sensor> getSensors() throws IOException {
+		Response<Sensors> response = api.getSensors().execute();
+		if (!response.isSuccessful()) {
+			throw new IOException("Unsuccessful response!");
+		}
+		Sensors sensors = response.body();
+    	return sensors.getSensors();
     }
     
 }
