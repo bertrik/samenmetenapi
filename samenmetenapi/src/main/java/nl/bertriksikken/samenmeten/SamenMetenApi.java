@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import nl.bertriksikken.samenmeten.api.ISamenMetenRestApi;
+import nl.bertriksikken.samenmeten.dto.Observation;
+import nl.bertriksikken.samenmeten.dto.Observations;
 import nl.bertriksikken.samenmeten.dto.Sensor;
 import nl.bertriksikken.samenmeten.dto.Sensors;
 import nl.bertriksikken.samenmeten.dto.Thing;
@@ -70,6 +72,26 @@ public final class SamenMetenApi {
 		}
 		Sensors sensors = response.body();
     	return sensors.getSensors();
+    }
+    
+    public List<Observation> getObservations(int id) throws IOException {
+    	List<Observation> allObservations = new ArrayList<>();
+    	int top = 100;
+    	int skip = 0;
+    	while (true) {
+    		Response<Observations> response = api.getObservations(id, top, skip).execute();
+    		if (!response.isSuccessful()) {
+    			throw new IOException("Unsuccessful response!");
+    		}
+    		Observations observations = response.body();
+			List<Observation> observationList = observations.getObservations();
+			allObservations.addAll(observationList);
+			skip += observationList.size();
+			if (observationList.size() < top) {
+				break;
+    		}
+		}
+    	return allObservations;
     }
     
 }
