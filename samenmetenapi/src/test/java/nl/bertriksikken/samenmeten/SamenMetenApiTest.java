@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import nl.bertriksikken.samenmeten.api.ISamenMetenRestApi;
+import nl.bertriksikken.samenmeten.dto.Location;
 import nl.bertriksikken.samenmeten.dto.Observation;
 import nl.bertriksikken.samenmeten.dto.Sensor;
 import nl.bertriksikken.samenmeten.dto.Thing;
@@ -48,5 +49,10 @@ public final class SamenMetenApiTest {
 		LOG.info("Retrieved {} observations: {}", observations.size());
 	}
 
-
+	@Test
+	public void testLocations() throws IOException {
+		List<Location> locations = api.getLocations(30408);
+		Assert.assertTrue(locations.size() > 0);
+	}
+	
 }

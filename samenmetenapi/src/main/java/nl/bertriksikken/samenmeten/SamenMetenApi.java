@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import nl.bertriksikken.samenmeten.api.ISamenMetenRestApi;
+import nl.bertriksikken.samenmeten.dto.Location;
+import nl.bertriksikken.samenmeten.dto.Locations;
 import nl.bertriksikken.samenmeten.dto.Observation;
 import nl.bertriksikken.samenmeten.dto.Observations;
 import nl.bertriksikken.samenmeten.dto.Sensor;
@@ -45,6 +47,14 @@ public final class SamenMetenApi {
         return retrofit.create(ISamenMetenRestApi.class);
     }
 
+    public List<Location> getLocations(int thingId) throws IOException {
+		Response<Locations> response = api.getLocations(thingId).execute();
+		if (!response.isSuccessful()) {
+			throw new IOException("Unsuccessful response!");
+		}
+		return response.body().getLocations();
+    }
+    
     public List<Thing> getThings() throws IOException {
     	List<Thing> allThings = new ArrayList<>();
     	int top = 100;

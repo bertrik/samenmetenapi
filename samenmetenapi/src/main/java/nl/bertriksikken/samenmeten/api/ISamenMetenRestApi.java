@@ -1,5 +1,6 @@
 package nl.bertriksikken.samenmeten.api;
 
+import nl.bertriksikken.samenmeten.dto.Locations;
 import nl.bertriksikken.samenmeten.dto.Observations;
 import nl.bertriksikken.samenmeten.dto.Sensors;
 import nl.bertriksikken.samenmeten.dto.Things;
@@ -18,5 +19,8 @@ public interface ISamenMetenRestApi {
 
     @GET("/v1.0/Datastreams({id})/Observations")
 	Call<Observations> getObservations(@Path("id") int id, @Query("$top") int top, @Query("$skip") int skip);
+
+    @GET("/v1.0/Things({id})/Locations")
+	Call<Locations> getLocations(@Path("id") int id);
 
 }
