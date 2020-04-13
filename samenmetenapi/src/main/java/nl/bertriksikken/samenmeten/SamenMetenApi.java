@@ -68,7 +68,7 @@ public final class SamenMetenApi {
 			List<Thing> thingList = things.getThings();
 			allThings.addAll(thingList);
 			skip += thingList.size();
-			if (thingList.size() < top) {
+			if (thingList.size() == 0) {
 				break;
     		}
 		}
