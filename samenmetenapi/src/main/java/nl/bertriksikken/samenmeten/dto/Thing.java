@@ -14,7 +14,15 @@ public class Thing {
 	@JsonProperty("description")
 	private String description;
 	
-	@Override
+	public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
 	public String toString() {
 		return String.format(Locale.ROOT, "[name=%s,desc=%s]", name, description);
 	}
