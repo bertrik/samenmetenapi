@@ -5,8 +5,6 @@ import java.time.Duration;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,41 +16,45 @@ import nl.bertriksikken.samenmeten.dto.Thing;
 
 public final class SamenMetenApiTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SamenMetenApi.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SamenMetenApiTest.class);
 
     private SamenMetenApi api;
     
-    @Before
-    public void before() {
+    public static void main(String[] args) throws IOException {
+        SamenMetenApiTest test = new SamenMetenApiTest();
+        List<Thing> things = test.getThings();
+        List<Sensor> sensors = test.getSensors();
+        List<Observation> observations = test.getObservations(0);
+        List<Location> locations = test.getLocations(0);
+    }
+    
+    private SamenMetenApiTest() {
 		ISamenMetenRestApi restApi = SamenMetenApi.newRestClient("https://api-samenmeten.rivm.nl", Duration.ofSeconds(10));
 		api = new SamenMetenApi(restApi);
     }
     
-	@Test
-	public void testGetThings() throws IOException {
+	private List<Thing> getThings() throws IOException {
 		List<Thing> things = api.getThings();
-		Assert.assertTrue(things.size() > 0);
 		LOG.info("Retrieved {} things", things.size());
+		return things;
 	}
 	
-	@Test
-	public void testGetSensors() throws IOException {
+	private List<Sensor> getSensors() throws IOException {
 		List<Sensor> sensors = api.getSensors();
-		Assert.assertTrue(sensors.size() > 0);
 		LOG.info("Retrieved {} sensors: {}", sensors.size(), sensors);
+		return sensors;
 	}
 	
-	@Test
-	public void testObservations() throws IOException {
-		List<Observation> observations = api.getObservations(98122);
-		Assert.assertTrue(observations.size() > 0);
+	private List<Observation> getObservations(int id) throws IOException {
+		List<Observation> observations = api.getObservations(id);
 		LOG.info("Retrieved {} observations: {}", observations.size());
+		return observations;
 	}
 
-	@Test
-	public void testLocations() throws IOException {
-		List<Location> locations = api.getLocations(30408);
-		Assert.assertTrue(locations.size() > 0);
+	private List<Location> getLocations(int id) throws IOException {
+		List<Location> locations = api.getLocations(id);
+        LOG.info("Retrieved {} locations: {}", locations.size());
+		return locations;
 	}
 	
 }
