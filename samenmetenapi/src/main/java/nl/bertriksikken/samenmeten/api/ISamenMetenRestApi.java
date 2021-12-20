@@ -9,6 +9,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+/**
+ * See https://www.samenmetenaanluchtkwaliteit.nl/dataportaal/api-application-programming-interface 
+ */
 public interface ISamenMetenRestApi {
 	
     @GET("/v1.0/Things")
