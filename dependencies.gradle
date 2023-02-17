@@ -1,22 +1,26 @@
 ext {
     libraries = [:]
+
+    jacksonVersion = '2.14.2'
+    retrofitVersion = '2.9.0'
+    slf4jVersion = '2.0.6'
 }
 
-libraries.slf4j = 'org.slf4j:slf4j-api:2.0.3'
-libraries.reload4j = 'org.slf4j:slf4j-reload4j:2.0.3'
+libraries.slf4j = "org.slf4j:slf4j-api:${slf4jVersion}"
+libraries.reload4j = "org.slf4j:slf4j-reload4j:${slf4jVersion}"
 
 libraries.jackson = [
-    'com.fasterxml.jackson.core:jackson-databind:2.13.4'
+    "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 ]
 
 libraries.retrofit = [
-    'com.squareup.retrofit2:retrofit:2.9.0',
-    'com.squareup.retrofit2:converter-jackson:2.9.0',
-    'com.squareup.retrofit2:converter-scalars:2.9.0'
+    "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+    "com.squareup.retrofit2:converter-jackson:${retrofitVersion}",
+    "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
 ]
 libraries.retrofit_mock = 'com.squareup.retrofit2:retrofit-mock:2.8.1'
 
 // test libraries
 libraries.junit = 'junit:junit:4.13.2'
-libraries.mockito = 'org.mockito:mockito-core:4.8.1'
+libraries.mockito = 'org.mockito:mockito-core:5.1.1'
 
