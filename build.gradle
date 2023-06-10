@@ -1,6 +1,7 @@
 plugins {
-  id 'com.github.spotbugs' version '5.0.14'
-  id 'com.github.ben-manes.versions' version '0.46.0'
+    alias libs.plugins.spotbugs
+    alias libs.plugins.versions
+    alias libs.plugins.version.catalog.update
 }
 
 def isNonStable = { String version ->
@@ -8,9 +9,6 @@ def isNonStable = { String version ->
     def regex = /^[0-9,.v-]+(-r)?$/
     return !stableKeyword && !(version ==~ regex)
 }
-
-// Define all library dependencies in one file for clarity
-apply from:'dependencies.gradle'
 
 subprojects {
     apply plugin: "java"
@@ -36,10 +34,10 @@ subprojects {
 
     // Standard libraries added to all projects
     dependencies {
-        testImplementation libraries.junit
-	    testImplementation libraries.mockito
+        testImplementation libs.junit
+        testImplementation libs.mockito.core
 
-        implementation libraries.slf4j
+        implementation libs.slf4j.api
     }
 }
 
