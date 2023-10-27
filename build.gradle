@@ -1,5 +1,4 @@
 plugins {
-    alias libs.plugins.spotbugs
     alias libs.plugins.versions
     alias libs.plugins.version.catalog.update
 }
@@ -13,7 +12,6 @@ def isNonStable = { String version ->
 subprojects {
     apply plugin: "java"
     apply plugin: "eclipse"
-    apply plugin: "com.github.spotbugs"
     apply plugin: 'com.github.ben-manes.versions'
     
     targetCompatibility = 1.11
@@ -22,8 +20,6 @@ subprojects {
     repositories {
         mavenCentral()
     }
-
-    spotbugsMain { reports { html { enabled = true } } }
 
     // Reject all non stable versions in dependency check
     tasks.named("dependencyUpdates").configure {
