@@ -14,8 +14,10 @@ subprojects {
     apply plugin: "eclipse"
     apply plugin: 'com.github.ben-manes.versions'
     
-    targetCompatibility = 1.11
-    sourceCompatibility = 1.11
+    java {
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
 
     repositories {
         mavenCentral()

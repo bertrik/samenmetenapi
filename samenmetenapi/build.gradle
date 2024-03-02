@@ -1,6 +1,9 @@
 apply plugin: "application"
 
-mainClassName = 'nl.bertriksikken.samenmetenapi.SamenMetenApi'
+
+application {
+    mainClass = 'nl.bertriksikken.samenmetenapi.SamenMetenApi'
+}
 
 dependencies {
     implementation libs.slf4j.reload4j
