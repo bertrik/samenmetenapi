@@ -27,7 +27,7 @@ public final class Observation {
 	
 	@Override
 	public String toString() {
-		return String.format(Locale.ROOT, "[id=%s,time=%s, result=%d]", iotId, phenomenonTime, result);
+		return String.format(Locale.ROOT, "[id=%s,time=%s,result=%f]", iotId, phenomenonTime, result);
 	}
 	
 }

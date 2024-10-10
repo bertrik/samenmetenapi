@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class Things {
 
+	@SuppressWarnings("UnusedVariable")
 	@JsonProperty("@iot.nextLink")
 	private String nextLink;
 	

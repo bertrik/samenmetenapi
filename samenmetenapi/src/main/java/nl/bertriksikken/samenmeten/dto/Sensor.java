@@ -12,8 +12,12 @@ public final class Sensor {
 	private String name;
 	@JsonProperty("description")
 	private String description;
+
+	@SuppressWarnings("UnusedVariable")
 	@JsonProperty("encodingType")
 	private String encodingType;
+
+	@SuppressWarnings("UnusedVariable")
 	@JsonProperty("metadata")
 	private String metaData;
 	

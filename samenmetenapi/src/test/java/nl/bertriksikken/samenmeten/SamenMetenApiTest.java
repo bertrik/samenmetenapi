@@ -23,9 +23,13 @@ public final class SamenMetenApiTest {
     public static void main(String[] args) throws IOException {
         SamenMetenApiTest test = new SamenMetenApiTest();
         List<Thing> things = test.getThings();
+		Assert.assertFalse(things.isEmpty());
         List<Sensor> sensors = test.getSensors();
+		Assert.assertFalse(sensors.isEmpty());
         List<Observation> observations = test.getObservations(0);
+		Assert.assertFalse(observations.isEmpty());
         List<Location> locations = test.getLocations(0);
+		Assert.assertFalse(locations.isEmpty());
     }
     
     private SamenMetenApiTest() {

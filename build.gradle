@@ -1,4 +1,5 @@
 plugins {
+    alias libs.plugins.errorprone
     alias libs.plugins.versions
 }
 
@@ -11,7 +12,8 @@ def isNonStable = { String version ->
 subprojects {
     apply plugin: "java"
     apply plugin: 'com.github.ben-manes.versions'
-    
+    apply plugin: 'net.ltgt.errorprone'
+
     java {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
@@ -30,6 +32,9 @@ subprojects {
 
     // Standard libraries added to all projects
     dependencies {
+        errorprone(libs.errorprone.core)
+        compileOnly libs.errorprone.annotations
+
         testImplementation libs.junit
         testImplementation libs.mockito.core
 
