@@ -1,6 +1,5 @@
 plugins {
     alias libs.plugins.versions
-    alias libs.plugins.version.catalog.update
 }
 
 def isNonStable = { String version ->
@@ -11,7 +10,6 @@ def isNonStable = { String version ->
 
 subprojects {
     apply plugin: "java"
-    apply plugin: "eclipse"
     apply plugin: 'com.github.ben-manes.versions'
     
     java {
