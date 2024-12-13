@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,13 +23,13 @@ public final class SamenMetenApiTest {
     public static void main(String[] args) throws IOException {
         SamenMetenApiTest test = new SamenMetenApiTest();
         List<Thing> things = test.getThings();
-		Assert.assertFalse(things.isEmpty());
+		Assertions.assertFalse(things.isEmpty());
         List<Sensor> sensors = test.getSensors();
-		Assert.assertFalse(sensors.isEmpty());
+		Assertions.assertFalse(sensors.isEmpty());
         List<Observation> observations = test.getObservations(0);
-		Assert.assertFalse(observations.isEmpty());
+		Assertions.assertFalse(observations.isEmpty());
         List<Location> locations = test.getLocations(0);
-		Assert.assertFalse(locations.isEmpty());
+		Assertions.assertFalse(locations.isEmpty());
     }
     
     private SamenMetenApiTest() {
