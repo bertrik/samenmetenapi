@@ -1,8 +1,8 @@
 [versions]
-jackson = "2.18.0"
+jackson = "2.18.2"
 retrofit2 = "2.11.0"
 slf4j = "2.0.16"
-errorprone = "2.33.0"
+errorprone = "2.36.0"
 
 [libraries]
 errorprone_annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "errorprone" }
@@ -15,7 +15,7 @@ retrofit-converter-jackson = { module = "com.squareup.retrofit2:converter-jackso
 retrofit-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit2" }
 
 junit = "junit:junit:4.13.2"
-mockito-core = "org.mockito:mockito-core:5.14.1"
+mockito-core = "org.mockito:mockito-core:5.14.2"
 
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-reload4j = { module = "org.slf4j:slf4j-reload4j", version.ref = "slf4j" }
@@ -25,5 +25,5 @@ retrofit = ["retrofit", "retrofit-converter-jackson", "retrofit-converter-scalar
 
 [plugins]
 versions = "com.github.ben-manes.versions:0.51.0"
-errorprone = "net.ltgt.errorprone:4.0.1"
+errorprone = "net.ltgt.errorprone:4.1.0"
 
