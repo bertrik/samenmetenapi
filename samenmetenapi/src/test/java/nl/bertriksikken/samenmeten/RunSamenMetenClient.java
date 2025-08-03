@@ -8,56 +8,54 @@ import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import nl.bertriksikken.samenmeten.api.ISamenMetenRestApi;
 import nl.bertriksikken.samenmeten.dto.Location;
 import nl.bertriksikken.samenmeten.dto.Observation;
 import nl.bertriksikken.samenmeten.dto.Sensor;
 import nl.bertriksikken.samenmeten.dto.Thing;
 
-public final class SamenMetenApiTest {
+public final class RunSamenMetenClient {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SamenMetenApiTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RunSamenMetenClient.class);
 
-    private SamenMetenApi api;
+    private SamenMetenClient client;
     
     public static void main(String[] args) throws IOException {
-        SamenMetenApiTest test = new SamenMetenApiTest();
-        List<Thing> things = test.getThings();
+        RunSamenMetenClient runner = new RunSamenMetenClient();
+        List<Thing> things = runner.getThings();
 		Assertions.assertFalse(things.isEmpty());
-        List<Sensor> sensors = test.getSensors();
+        List<Sensor> sensors = runner.getSensors();
 		Assertions.assertFalse(sensors.isEmpty());
-        List<Observation> observations = test.getObservations(0);
+        List<Observation> observations = runner.getObservations(0);
 		Assertions.assertFalse(observations.isEmpty());
-        List<Location> locations = test.getLocations(0);
+        List<Location> locations = runner.getLocations(0);
 		Assertions.assertFalse(locations.isEmpty());
     }
     
-    private SamenMetenApiTest() {
-		ISamenMetenRestApi restApi = SamenMetenApi.newRestClient("https://api-samenmeten.rivm.nl", Duration.ofSeconds(10));
-		api = new SamenMetenApi(restApi);
+    private RunSamenMetenClient() {
+		client = SamenMetenClient.create("https://api-samenmeten.rivm.nl", Duration.ofSeconds(10));
     }
     
 	private List<Thing> getThings() throws IOException {
-		List<Thing> things = api.getThings();
+		List<Thing> things = client.getThings();
 		LOG.info("Retrieved {} things", things.size());
 		return things;
 	}
 	
 	private List<Sensor> getSensors() throws IOException {
-		List<Sensor> sensors = api.getSensors();
+		List<Sensor> sensors = client.getSensors();
 		LOG.info("Retrieved {} sensors: {}", sensors.size(), sensors);
 		return sensors;
 	}
 	
 	private List<Observation> getObservations(int id) throws IOException {
-		List<Observation> observations = api.getObservations(id);
-		LOG.info("Retrieved {} observations: {}", observations.size());
+		List<Observation> observations = client.getObservations(id);
+		LOG.info("Retrieved {} observations", observations.size());
 		return observations;
 	}
 
 	private List<Location> getLocations(int id) throws IOException {
-		List<Location> locations = api.getLocations(id);
-        LOG.info("Retrieved {} locations: {}", locations.size());
+		List<Location> locations = client.getLocations(id);
+        LOG.info("Retrieved {} locations", locations.size());
 		return locations;
 	}
 	
