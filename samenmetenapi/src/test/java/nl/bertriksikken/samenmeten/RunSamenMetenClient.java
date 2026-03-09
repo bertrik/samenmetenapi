@@ -1,17 +1,17 @@
 package nl.bertriksikken.samenmeten;
 
-import java.io.IOException;
-import java.time.Duration;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import nl.bertriksikken.samenmeten.dto.Location;
 import nl.bertriksikken.samenmeten.dto.Observation;
 import nl.bertriksikken.samenmeten.dto.Sensor;
 import nl.bertriksikken.samenmeten.dto.Thing;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public final class RunSamenMetenClient {
 
@@ -22,13 +22,13 @@ public final class RunSamenMetenClient {
     public static void main(String[] args) throws IOException {
         RunSamenMetenClient runner = new RunSamenMetenClient();
         List<Thing> things = runner.getThings();
-		Assertions.assertFalse(things.isEmpty());
+		assertFalse(things.isEmpty());
         List<Sensor> sensors = runner.getSensors();
-		Assertions.assertFalse(sensors.isEmpty());
+		assertFalse(sensors.isEmpty());
         List<Observation> observations = runner.getObservations(0);
-		Assertions.assertFalse(observations.isEmpty());
+		assertFalse(observations.isEmpty());
         List<Location> locations = runner.getLocations(0);
-		Assertions.assertFalse(locations.isEmpty());
+		assertFalse(locations.isEmpty());
     }
     
     private RunSamenMetenClient() {

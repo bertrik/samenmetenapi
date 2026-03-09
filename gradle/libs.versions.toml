@@ -1,7 +1,7 @@
 [versions]
 errorprone = "2.48.0"
 jackson = "2.21.1"
-junit = "5.13.4"
+junit = "6.0.3"
 mockito = "5.22.0"
 retrofit2 = "3.0.0"
 slf4j = "2.0.17"
